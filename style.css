@@ -1,0 +1,31 @@
+div {
+    border-width: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    width: 960px;
+    height: 960px;
+}
+
+.row {
+    display: flex;
+    flex-grow: 1;
+  
+}
+
+.cell {
+    flex-grow: 1;
+    background-color: white;
+    border-color: white;
+    border-width: 0px;
+    border-style: solid;
+}
+
+.coloured {
+    background-color: black;
+}
+

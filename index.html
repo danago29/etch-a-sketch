@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> 
+    <title>Etch-a-Sketch</title>
+</head>
+<body>
+    <div>
+        <input type="range" min="5" max="100" value="50" id="grid-resolution">
+
+    </div>
+    <div class="grid-container">
+
+    </div>
+</body>
+</html>
+
+<script>
+
+    // attach event listener to generate default grid
+    document.addEventListener('DOMContentLoaded', createGrid);
+
+    // attach event listener to slider to geneate new grid
+    let slider = document.querySelector('#grid-resolution');
+    slider.addEventListener('input', createGrid);
+
+    function createGrid() {        
+
+        // get grid resolution
+        let resolution = document.querySelector('#grid-resolution').value
+
+        
+        
+        // select container for grid
+        let container = document.querySelector('.grid-container');
+
+        // clear existing grid
+        container.innerHTML = '';
+
+        // create row element
+        let row = document.createElement("div");
+        row.className = "row";
+
+        // create cell element
+        let cell = document.createElement("div");
+        cell.className = "cell";
+
+        // create a single row of cells
+        for(let i = 0; i < resolution; i++) {
+            row.appendChild(cell.cloneNode(true));
+        }
+
+        // add each row to grid container
+        for(let i = 0; i < resolution; i++) {
+            container.appendChild(row.cloneNode(true));
+        }
+
+        // add event listener to each cell for shading (turn cells black)
+        /*
+        let cells = document.querySelectorAll('.cell');
+        cells.forEach((cell) => {
+            cell.addEventListener('mouseover', () => {
+                cell.classList.add('coloured');
+            });
+        });
+        */
+
+        // add event listener to each cell for shading (turn cells random colour)
+        let cells = document.querySelectorAll('.cell');
+        cells.forEach((cell) => {
+            cell.addEventListener('mouseover', () => {
+                cell.style.backgroundColor = random_rgba();
+            });
+        });
+
+    }   
+
+
+    function random_rgba() {
+        var o = Math.round, r = Math.random, s = 255;
+        return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+    }
+
+
+
+     
+</script>
